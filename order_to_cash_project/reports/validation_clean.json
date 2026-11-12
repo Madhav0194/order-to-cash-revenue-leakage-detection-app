@@ -1,0 +1,42 @@
+{
+  "mode": "clean",
+  "table_counts": {
+    "Account": 20,
+    "Quote": 100,
+    "QuoteLine": 239,
+    "SalesOrder": 70,
+    "OrderLine": 169,
+    "Shipment": 78,
+    "ShipmentLine": 193,
+    "Invoice": 86,
+    "InvoiceLine": 216,
+    "Payment": 86,
+    "PaymentAllocation": 86,
+    "Dispute": 7,
+    "StatusEvent": 1136,
+    "InvoiceBalance": 86
+  },
+  "issues": [],
+  "warnings": [
+    {
+      "rule": "DISPUTE_HISTORY_INCOMPLETE",
+      "entity_id": "DSP-2026-000002",
+      "details": "Source=RESOLVED, history=OPEN"
+    },
+    {
+      "rule": "DISPUTE_HISTORY_INCOMPLETE",
+      "entity_id": "DSP-2026-000003",
+      "details": "Source=RESOLVED, history=OPEN"
+    },
+    {
+      "rule": "DISPUTE_HISTORY_INCOMPLETE",
+      "entity_id": "DSP-2026-000004",
+      "details": "Source=RESOLVED, history=OPEN"
+    },
+    {
+      "rule": "DISPUTE_HISTORY_INCOMPLETE",
+      "entity_id": "DSP-2026-000007",
+      "details": "Source=INVESTIGATING, history=OPEN"
+    }
+  ]
+}

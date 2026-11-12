@@ -1,0 +1,35 @@
+{
+  "evaluation_unit": "anomaly_case",
+  "ground_truth_count": 5,
+  "clean_baseline_findings": [],
+  "true_positives": 5,
+  "false_positives": 0,
+  "false_negatives": 0,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1_score": 1.0,
+  "matched": [
+    {
+      "type": "CLOSED_ORDER_WITH_UNPAID_INVOICE",
+      "case_id": "SO-2026-000003"
+    },
+    {
+      "type": "DISPUTE_RECEIVABLE_MISMATCH",
+      "case_id": "INV-2026-000005"
+    },
+    {
+      "type": "DUPLICATE_PAYMENT_ALLOCATION",
+      "case_id": "PAY-2026-000003|INV-2026-000002|40436.00"
+    },
+    {
+      "type": "INVOICE_EXCEEDS_FULFILLMENT",
+      "case_id": "OL-2026-000001"
+    },
+    {
+      "type": "SKIPPED_REQUIRED_STATUS",
+      "case_id": "SHP-2026-000001"
+    }
+  ],
+  "missed": [],
+  "additional": []
+}

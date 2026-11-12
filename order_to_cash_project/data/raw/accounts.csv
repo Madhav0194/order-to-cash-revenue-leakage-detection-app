@@ -1,0 +1,21 @@
+account_id,account_name,industry,created_at,status
+ACC-2026-000001,"Pandit, Mandal and Gera",Healthcare,2026-01-22,ACTIVE
+ACC-2026-000002,Khurana and Sons,Healthcare,2026-01-19,ACTIVE
+ACC-2026-000003,Agate Ltd,Retail,2026-01-28,ACTIVE
+ACC-2026-000004,"Deep, Bhargava and Issac",Retail,2026-01-02,ACTIVE
+ACC-2026-000005,Morar Ltd,Retail,2026-01-08,ACTIVE
+ACC-2026-000006,"Chhabra, Hari and Doctor",Finance,2026-01-01,ACTIVE
+ACC-2026-000007,"D’Alia, Kalita and Seshadri",Education,2026-01-27,ACTIVE
+ACC-2026-000008,Contractor LLC,Technology,2026-01-05,ACTIVE
+ACC-2026-000009,Pall Group,Retail,2026-01-07,ACTIVE
+ACC-2026-000010,Bhatia and Sons,Finance,2026-01-10,ACTIVE
+ACC-2026-000011,Shankar Inc,Finance,2026-01-23,ACTIVE
+ACC-2026-000012,Kapur PLC,Technology,2026-01-20,ACTIVE
+ACC-2026-000013,"Nath, Chandran and Goel",Retail,2026-01-24,ACTIVE
+ACC-2026-000014,Saha-Chakraborty,Retail,2026-01-25,ACTIVE
+ACC-2026-000015,Shan-Bath,Technology,2026-01-17,ACTIVE
+ACC-2026-000016,Raju PLC,Education,2026-01-07,ACTIVE
+ACC-2026-000017,Bhardwaj Inc,Technology,2026-01-15,ACTIVE
+ACC-2026-000018,Char-Mishra,Technology,2026-01-19,ACTIVE
+ACC-2026-000019,"Handa, Ahluwalia and Chaudhuri",Retail,2026-01-12,ACTIVE
+ACC-2026-000020,Ramakrishnan and Sons,Healthcare,2026-01-19,ACTIVE

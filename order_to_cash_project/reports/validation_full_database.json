@@ -1,0 +1,32 @@
+{
+  "database": "C:\\Users\\DELL\\Desktop\\order_to_cash_project\\database\\order_to_cash_full.db",
+  "seed": 20261022,
+  "counts": {
+    "Account": 250,
+    "Quote": 10000,
+    "QuoteLine": 19886,
+    "SalesOrder": 7000,
+    "OrderLine": 13987,
+    "Shipment": 7000,
+    "ShipmentLine": 13987,
+    "Invoice": 8000,
+    "InvoiceLine": 16009,
+    "Payment": 15000,
+    "PaymentAllocation": 15000,
+    "Dispute": 400,
+    "DisputeTimeline": 400,
+    "StatusEvent": 125000,
+    "InvoiceBalance": 8000
+  },
+  "checks": [
+    "sqlite_integrity",
+    "foreign_keys",
+    "all_csv_rows_equal_database",
+    "exact_full_scale_counts",
+    "polymorphic_event_references",
+    "event_transitions_and_final_status",
+    "dispute_timeline",
+    "financial_reconciliation",
+    "no_ground_truth_leakage"
+  ]
+}

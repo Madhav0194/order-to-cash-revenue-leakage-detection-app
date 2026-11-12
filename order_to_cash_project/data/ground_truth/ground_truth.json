@@ -1,0 +1,52 @@
+[
+  {
+    "anomaly_id": "ANM-2026-000001",
+    "issue_type": "INVOICE_EXCEEDS_FULFILLMENT",
+    "entity_type": "InvoiceLine",
+    "entity_id": "IL-2026-000001",
+    "related_id": "OL-2026-000001",
+    "expected_rule": "Total invoiced quantity must not exceed delivered quantity",
+    "expected_decision": "FLAG_OVERBILLING",
+    "ground_truth": 1
+  },
+  {
+    "anomaly_id": "ANM-2026-000002",
+    "issue_type": "DUPLICATE_PAYMENT_ALLOCATION",
+    "entity_type": "PaymentAllocation",
+    "entity_id": "PAL-2026-999999",
+    "related_id": "PAL-2026-000001",
+    "expected_rule": "One payment allocation must not be recorded twice",
+    "expected_decision": "FLAG_DUPLICATE_ALLOCATION",
+    "ground_truth": 1
+  },
+  {
+    "anomaly_id": "ANM-2026-000003",
+    "issue_type": "CLOSED_ORDER_WITH_UNPAID_INVOICE",
+    "entity_type": "SalesOrder",
+    "entity_id": "SO-2026-000002",
+    "related_id": "INV-2026-000002",
+    "expected_rule": "Order cannot close while invoice balance is outstanding",
+    "expected_decision": "FLAG_INVALID_CLOSURE",
+    "ground_truth": 1
+  },
+  {
+    "anomaly_id": "ANM-2026-000004",
+    "issue_type": "SKIPPED_REQUIRED_STATUS",
+    "entity_type": "Shipment",
+    "entity_id": "SHP-2026-000001",
+    "related_id": "EVT-2026-001059",
+    "expected_rule": "Shipment must pass through DISPATCHED before DELIVERED",
+    "expected_decision": "FLAG_INVALID_TRANSITION",
+    "ground_truth": 1
+  },
+  {
+    "anomaly_id": "ANM-2026-000005",
+    "issue_type": "DISPUTE_RECEIVABLE_MISMATCH",
+    "entity_type": "Invoice",
+    "entity_id": "INV-2026-000029",
+    "related_id": "DSP-2026-000001",
+    "expected_rule": "Dispute alone cannot reduce receivables without a documented credit adjustment",
+    "expected_decision": "FLAG_RECEIVABLE_MISMATCH",
+    "ground_truth": 1
+  }
+]
