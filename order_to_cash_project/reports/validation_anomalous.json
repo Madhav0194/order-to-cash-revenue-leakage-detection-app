@@ -1,0 +1,144 @@
+{
+  "mode": "anomalous",
+  "table_counts": {
+    "Account": 20,
+    "Quote": 100,
+    "QuoteLine": 239,
+    "SalesOrder": 70,
+    "OrderLine": 169,
+    "Shipment": 78,
+    "ShipmentLine": 193,
+    "Invoice": 86,
+    "InvoiceLine": 216,
+    "Payment": 86,
+    "PaymentAllocation": 87,
+    "Dispute": 7,
+    "StatusEvent": 1136,
+    "InvoiceBalance": 86
+  },
+  "issues": [
+    {
+      "rule": "INVOICE_EXCEEDS_FULFILLMENT",
+      "entity_id": "OL-2026-000001",
+      "details": "Billed 95, delivered 94"
+    },
+    {
+      "rule": "DUPLICATE_PAYMENT_ALLOCATION",
+      "entity_id": "PAL-2026-000001|PAL-2026-999999",
+      "details": "Same payment, invoice, amount: ('PAY-2026-000001', 'INV-2026-000001', '4653000.00')"
+    },
+    {
+      "rule": "PAYMENT_OVERALLOCATED",
+      "entity_id": "PAY-2026-000001",
+      "details": "Allocated 9306000.00, received 4653000.00"
+    },
+    {
+      "rule": "PAYMENT_STATUS_RECONCILIATION",
+      "entity_id": "PAY-2026-000001",
+      "details": "Allocated 9306000.00, payment 4653000.00"
+    },
+    {
+      "rule": "INVOICE_OVERALLOCATED",
+      "entity_id": "INV-2026-000001",
+      "details": "Allocated 9306000.00, total 4702500.00"
+    },
+    {
+      "rule": "INVOICE_TOTAL_MISMATCH",
+      "entity_id": "INV-2026-000001",
+      "details": "Recorded 4653000.00, actual 4702500.00"
+    },
+    {
+      "rule": "ALLOCATION_TOTAL_MISMATCH",
+      "entity_id": "INV-2026-000001",
+      "details": "Recorded 4653000.00, actual 9306000.00"
+    },
+    {
+      "rule": "RECEIVABLE_RECONCILIATION",
+      "entity_id": "INV-2026-000001",
+      "details": "Recorded 0.00, expected -4603500.00"
+    },
+    {
+      "rule": "RECEIVABLE_RECONCILIATION",
+      "entity_id": "INV-2026-000029",
+      "details": "Recorded 637071.21, expected 945000.00"
+    },
+    {
+      "rule": "INVALID_STATUS_TRANSITION",
+      "entity_id": "SO-2026-000002",
+      "details": "FULFILLED -> CLOSED"
+    },
+    {
+      "rule": "BROKEN_STATUS_CHAIN",
+      "entity_id": "SHP-2026-000001",
+      "details": "Expected old=CREATED, got DISPATCHED"
+    },
+    {
+      "rule": "INVALID_STATUS_TRANSITION",
+      "entity_id": "SHP-2026-000001",
+      "details": "CREATED -> DELIVERED"
+    },
+    {
+      "rule": "SKIPPED_REQUIRED_STATUS",
+      "entity_id": "SHP-2026-000001",
+      "details": "DELIVERED without DISPATCHED"
+    },
+    {
+      "rule": "CLOSED_ORDER_WITH_UNPAID_INVOICE",
+      "entity_id": "SO-2026-000002",
+      "details": "Invoice INV-2026-000002 outstanding 509282.88"
+    },
+    {
+      "rule": "DISPUTE_RECEIVABLE_MISMATCH",
+      "entity_id": "INV-2026-000029",
+      "details": "Actual 637071.21, expected 945000.00"
+    }
+  ],
+  "warnings": [
+    {
+      "rule": "DISPUTE_HISTORY_INCOMPLETE",
+      "entity_id": "DSP-2026-000002",
+      "details": "Source=RESOLVED, history=OPEN"
+    },
+    {
+      "rule": "DISPUTE_HISTORY_INCOMPLETE",
+      "entity_id": "DSP-2026-000003",
+      "details": "Source=RESOLVED, history=OPEN"
+    },
+    {
+      "rule": "DISPUTE_HISTORY_INCOMPLETE",
+      "entity_id": "DSP-2026-000004",
+      "details": "Source=RESOLVED, history=OPEN"
+    },
+    {
+      "rule": "DISPUTE_HISTORY_INCOMPLETE",
+      "entity_id": "DSP-2026-000007",
+      "details": "Source=INVESTIGATING, history=OPEN"
+    }
+  ],
+  "ground_truth_check": {
+    "expected_types": [
+      "CLOSED_ORDER_WITH_UNPAID_INVOICE",
+      "DISPUTE_RECEIVABLE_MISMATCH",
+      "DUPLICATE_PAYMENT_ALLOCATION",
+      "INVOICE_EXCEEDS_FULFILLMENT",
+      "SKIPPED_REQUIRED_STATUS"
+    ],
+    "detected_types": [
+      "ALLOCATION_TOTAL_MISMATCH",
+      "BROKEN_STATUS_CHAIN",
+      "CLOSED_ORDER_WITH_UNPAID_INVOICE",
+      "DISPUTE_RECEIVABLE_MISMATCH",
+      "DUPLICATE_PAYMENT_ALLOCATION",
+      "INVALID_STATUS_TRANSITION",
+      "INVOICE_EXCEEDS_FULFILLMENT",
+      "INVOICE_OVERALLOCATED",
+      "INVOICE_TOTAL_MISMATCH",
+      "PAYMENT_OVERALLOCATED",
+      "PAYMENT_STATUS_RECONCILIATION",
+      "RECEIVABLE_RECONCILIATION",
+      "SKIPPED_REQUIRED_STATUS"
+    ],
+    "missing_types": [],
+    "all_five_detected": true
+  }
+}

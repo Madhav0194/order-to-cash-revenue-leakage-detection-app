@@ -1,0 +1,6 @@
+anomaly_id,issue_type,entity_type,entity_id,related_id,expected_rule,expected_decision,ground_truth
+ANM-2026-000001,INVOICE_EXCEEDS_FULFILLMENT,InvoiceLine,IL-2026-000001,OL-2026-000001,Total invoiced quantity must not exceed delivered quantity,FLAG_OVERBILLING,1
+ANM-2026-000002,DUPLICATE_PAYMENT_ALLOCATION,PaymentAllocation,PAL-2026-999999,PAL-2026-000001,One payment allocation must not be recorded twice,FLAG_DUPLICATE_ALLOCATION,1
+ANM-2026-000003,CLOSED_ORDER_WITH_UNPAID_INVOICE,SalesOrder,SO-2026-000002,INV-2026-000002,Order cannot close while invoice balance is outstanding,FLAG_INVALID_CLOSURE,1
+ANM-2026-000004,SKIPPED_REQUIRED_STATUS,Shipment,SHP-2026-000001,EVT-2026-001059,Shipment must pass through DISPATCHED before DELIVERED,FLAG_INVALID_TRANSITION,1
+ANM-2026-000005,DISPUTE_RECEIVABLE_MISMATCH,Invoice,INV-2026-000029,DSP-2026-000001,Dispute alone cannot reduce receivables without a documented credit adjustment,FLAG_RECEIVABLE_MISMATCH,1

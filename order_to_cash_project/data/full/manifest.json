@@ -1,0 +1,70 @@
+{
+  "seed": 20261022,
+  "cutoff": "2026-10-31",
+  "files": {
+    "raw/accounts.csv": {
+      "rows": 250,
+      "sha256": "7e7234de5beeef53fc47041d5ccbfecf00bca7c15b2602daab66d1f55edd6672"
+    },
+    "raw/quotes.csv": {
+      "rows": 10000,
+      "sha256": "46fbe50ad2011396c7199d171b54a8d55d4f3d28e0ef8b31ced0da93a028e5b7"
+    },
+    "raw/quote_lines.csv": {
+      "rows": 19886,
+      "sha256": "9dd6e20602d0fbde1b2cc51f79f3f6f6d6f830d2658c2b985fd396892be6fc1e"
+    },
+    "raw/sales_orders.csv": {
+      "rows": 7000,
+      "sha256": "057f037317558b4e760d8c71a7681d829b8d501f7e681b5d3da11f95ca5dce12"
+    },
+    "raw/order_lines.csv": {
+      "rows": 13987,
+      "sha256": "7612e979979b49b7e45bc4a9bd2e4efe2c515cc4855337a6257467f81372c5af"
+    },
+    "raw/shipments.csv": {
+      "rows": 7000,
+      "sha256": "1b5bbaaa5ed4968905ab4a08ca639a5b969e34781cd2950c4423ea1e39cc2e1e"
+    },
+    "raw/shipment_lines.csv": {
+      "rows": 13987,
+      "sha256": "14703d74e374d2d9f11a65c48afd139f68126031ab4c67faf47255bc016f0479"
+    },
+    "raw/invoices.csv": {
+      "rows": 8000,
+      "sha256": "d493295c97df0d9640af50385f22810dffe756dd9f5aa824b857cbb9ffccf988"
+    },
+    "raw/invoice_lines.csv": {
+      "rows": 16009,
+      "sha256": "cd483408ba31f1b0902bbcb40f282729b852ab2e50c9756809bf9f9178dda44d"
+    },
+    "raw/payments.csv": {
+      "rows": 15000,
+      "sha256": "08bf6334214cefed0e4901fa3928c967d45b385f12f8df1b3bf434186856b6cd"
+    },
+    "raw/payment_allocations.csv": {
+      "rows": 15000,
+      "sha256": "062c88fe607598cb77643e53ee006d1656a99afa888d32c22b899d93eaa30e7f"
+    },
+    "raw/disputes.csv": {
+      "rows": 400,
+      "sha256": "7d5eadd155b57767c1627a8e3e953918910d08f194d9a5653140a6031d3da8a3"
+    },
+    "raw/dispute_timeline.csv": {
+      "rows": 400,
+      "sha256": "fccc33c29e58776a51913c11fb3f94ae2f815bc7c082fbb80ce82ca53162fc0c"
+    },
+    "raw/status_events.csv": {
+      "rows": 125000,
+      "sha256": "4551177eff5a85b36e14817484ba1678b1cc59f95672cf3126af6149fbd31a61"
+    },
+    "processed/invoice_balances.csv": {
+      "rows": 8000,
+      "sha256": "7bb41b2ba7d88fe79adc3349953ef6228ab51b17cfb178869bda227b3959de40"
+    },
+    "ground_truth/ground_truth.csv": {
+      "rows": 0,
+      "sha256": "ca59d122f5f9c91e0194bc7a874c3b17b410c53630bc24ca0407d17aa8370dd3"
+    }
+  }
+}
