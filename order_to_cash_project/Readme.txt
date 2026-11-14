@@ -1,263 +1,244 @@
-Order-to-Cash Revenue Leakage and Process Delay Detection System
+# Order-to-Cash Revenue Leakage Detection
 
-About the Project
+## About the Project
 
-The main idea behind this project is to find mistakes that happen during a company's sales and payment process.
+This project is about finding errors in a company's order and payment records.
 
-For example, a company might deliver 80 products but accidentally generate a bill for 100. Sometimes payments may be recorded more than once, or an order may be marked as completed even though the payment is still pending.
+In a normal sales process, a customer places an order, the company delivers the products, an invoice is generated and the payment is collected. Sometimes these records don't match, which can lead to financial problems.
 
-When a company handles thousands of transactions, finding these issues manually takes a lot of time.
+I built a system that compares these records and identifies mismatches. I used Python to process the data, SQLite to store the records and Streamlit to display the results.
 
-This project helps identify such problems by comparing orders, deliveries, invoices and payments.
+## Tools Used
 
-I used Python to process the data, SQLite to store the records and Streamlit to create a dashboard where the results can be viewed easily.
+- Python - For data processing and checking transactions
+- SQLite - For storing transaction records
+- SQL - For comparing records in the database
+- Pandas - For working with datasets
+- Streamlit - For the dashboard
+- Plotly - For charts and graphs
+- VS Code - For writing and running the code
 
-Tools and Technologies
+## Project Setup
 
-I used the following tools while building the project:
+I developed the project using Python in VS Code.
 
--Python: To write the main logic and check the transactions.
--SQLite: To store all the transaction details.
--SQL: To retrieve and compare information from the database.
--Pandas: To work with the datasets.
--Streamlit: To build the dashboard.
--Plotly: To display charts and graphs.
--VS Code: To write and run the code.
+### Step 1: Install the Required Libraries
 
-Project Setup
+Open the project folder in VS Code and run:
 
-These are the steps to set up and run the project on a computer.
-
-Step 1: Install Python
-
-First, install Python and check whether it is working.
-
-Open the terminal and type:
-
-bash
-python --version
-
-
-If the Python version appears, the installation is working.
-
-Step 2: Install the Required Libraries
-
-Open the project folder in VS Code.
-
-In the terminal, run:
-
-bash
+```bash
 python -m pip install pandas numpy faker sqlalchemy streamlit plotly pytest
+```
 
+### Step 2: Generate the Dataset
 
-This installs the libraries required for the project.
+I used synthetic data because I didn't have access to real company transaction records.
 
-Step 3: Generate the Dataset
+To generate the full dataset, run:
 
-Since I didn't have access to real company transaction data, I used synthetic data for testing.
-
-The dataset includes customer accounts, quotations, orders, deliveries, invoices, payments and disputes.
-
-To generate it, run:
-
-bash
+```bash
 python src/generate_full_dataset.py
+```
 
+### Step 3: Validate the Dataset
 
-Step 4: Check the Dataset
+After generating the data, I checked whether the records were connected properly and whether the values were consistent.
 
-After generating the data, I added validation checks to make sure the records were properly connected and the values were consistent.
-
-Run:
-
-bash
+```bash
 python src/validate_full_dataset.py
+```
 
+### Step 4: Create the Database
 
-Step 5: Create the Database
+The generated data is loaded into an SQLite database.
 
-The generated data is stored in an SQLite database so that the records can be accessed and compared.
-
-Run:
-
-bash
+```bash
 python src/load_full_database.py
-
+```
 
 To check whether the database was created correctly:
 
-bash
+```bash
 python src/validate_full_database.py
+```
 
+### Step 5: Test Anomaly Detection
 
-Step 6: Test the Anomaly Detection
+I created a separate copy of the database and deliberately introduced five errors to test the detection rules.
 
-To test whether the system could find mistakes, I used a separate database containing five deliberately introduced errors.
-
-First, create the test database:
-
-bash
+```bash
 python src/inject_full_anomalies.py
+```
 
+Then I ran the detection program:
 
-Then run the detection program:
-
-bash
+```bash
 python src/detect_full_anomalies.py
+```
 
+### Step 6: Run the Dashboard
 
-The program checks the transactions and reports the errors it finds.
+To start the dashboard:
 
-Step 7: Run the Dashboard
-
-Once the data and database are ready, launch the dashboard using:
-
-bash
+```bash
 python -m streamlit run dashboard/app.py
-
+```
 
 The dashboard can be opened at:
 
 http://localhost:8501
 
-It shows the transaction information, payment details, outstanding amounts and detected anomalies.
+## Dataset Details
 
-Dataset Details
+The generated dataset contains:
 
-For testing, I generated a dataset containing:
+| Data | Number of Records |
+|---|---:|
+| Quotations | 10,000 |
+| Sales Orders | 7,000 |
+| Invoices | 8,000 |
+| Payments | 15,000 |
+| Status Events | 125,000 |
 
-- 10,000 quotations
-- 7,000 sales orders
-- 8,000 invoices
-- 15,000 payments
-- 125,000 status events
+The dataset also includes customer accounts, shipments, invoice details, payment allocations and disputes.
 
-All of this is sample data generated for the project. No real customer or company financial records were used.
+All records were generated for testing purposes.
 
-What the System Checks
+## Data Validation
 
-The system currently looks for five types of problems:
+After generating the dataset, I ran validation checks to make sure the records were consistent.
 
-1. Overbilling: When an invoice contains a higher quantity than what was delivered.
-2. Duplicate payment allocation: When the same payment allocation is recorded more than once.
-3. Unpaid closed orders: When an order is marked as closed even though payment is still pending.
-4. Missing status updates: When an important shipment status is skipped.
-5. Receivables mismatch: When the recorded outstanding amount does not match the expected amount for a disputed invoice.
+I checked whether:
 
-These checks help identify records that may need further investigation.
+- Orders, shipments and invoices were connected correctly.
+- Delivered quantities matched the expected quantities.
+- Payment allocations were calculated correctly.
+- Invoice balances were consistent.
+- Database relationships were valid.
+- Dispute records matched their related transactions.
 
-Prompt History and ChatGPT Assistance
+The full dataset passed the validation checks.
 
-I used ChatGPT during development whenever I needed help understanding a concept, planning the next step, writing code or checking the results.
+The SQLite database validation also passed without foreign key violations or financial reconciliation errors.
 
-Instead of building everything at once, I worked on the project in stages and tested each part before moving forward.
+## Regenerating and Comparing the Dataset
 
-Below is a summary of the main prompts and topics I discussed with ChatGPT. These are simplified versions of the conversations, not an exact transcript.
+One of the requirements was to check whether the same data could be generated more than once.
 
-1. Understanding the project
+I generated the dataset twice using the same random seed and configuration.
 
-"Can you explain the Order-to-Cash process and what kind of mistakes can happen between receiving an order and collecting payment?"
+After both runs, I compared the generated CSV files using SHA-256 hashes. These hashes help check whether the contents of two files are identical.
 
-This helped me understand the overall problem and what the system needed to check.
+There were 16 CSV files in total.
 
-2. Planning the project
+**Comparison Results:**
 
-"How can I build this project using Python and a database? What should I work on first?"
+- Total files compared: 16
+- Files that matched: 16
+- Files with differences: 0
 
-This helped me divide the project into smaller stages.
+This confirmed that the dataset generation process was reproducible.
 
-3. Understanding the database
+## Anomaly Detection
 
-"How should I connect customer details, orders, shipments, invoices and payments in a database?"
+The system currently checks for five types of errors.
 
-This helped with planning the database structure.
+1. **Invoice mismatch:** When an invoice includes more items than were delivered.
+2. **Duplicate payment allocation:** When the same payment allocation is recorded more than once.
+3. **Unpaid closed order:** When an order is marked as closed even though payment is still pending.
+4. **Missing shipment status:** When an important status update is skipped.
+5. **Receivables mismatch:** When the recorded outstanding amount does not match the expected amount for a disputed invoice.
 
-4. Preparing sample data
+## Testing and Results
 
-"How can I generate sample company transactions that look realistic and can be used for testing?"
+To test the detection rules, I used two versions of the database.
 
-This helped with creating synthetic data and understanding how related records should be generated.
+The first was the original clean database, without any deliberately introduced errors.
 
-5. Checking the data
+The second was a copy containing five known anomalies.
 
-"What checks should I perform to make sure the generated data is correct and consistent?"
+I ran the detection program on both databases and compared the results.
 
-This helped with validating the records before using them for anomaly detection.
+| Test | Result |
+|---|---|
+| Anomalies found in clean database | 0 |
+| Anomalies introduced in test database | 5 |
+| Anomalies detected | 5 |
+| Missed anomalies | 0 |
+| Additional findings | 0 |
+| Precision | 100% |
+| Recall | 100% |
+| F1-score | 100% |
 
-6. Finding transaction errors
+The system identified all five introduced anomalies.
 
-"How can I compare delivery, invoice and payment records to identify possible financial mistakes?"
+These results are based on the five controlled test cases. More testing would be needed to evaluate performance on real company data.
 
-This helped with developing the detection rules.
+## Reports
 
-7. Testing the detection system
+The project includes validation outputs and anomaly evaluation reports.
 
-"How can I introduce a few known errors into the data and check whether my program finds them?"
+The validation programs check whether the generated data and database records are consistent.
 
-This helped with setting up controlled test cases.
+The anomaly evaluation report compares the errors introduced into the test database with the errors found by the detection program.
 
-8. Understanding the results
+The evaluation results are saved in:
 
-"How do precision, recall and F1-score work, and how can I use them to evaluate my results?"
+`reports/full_anomaly_evaluation.json`
 
-This helped me understand the evaluation metrics.
+The dashboard also allows users to view and download selected transaction information as CSV files.
 
-9. Creating the dashboard
+## Dashboard
 
-"How can I display the transaction details and detected errors in a simple dashboard using Streamlit?"
+I created a Streamlit dashboard to make it easier to view the results.
 
-This helped with developing the user interface.
+The dashboard includes:
 
-10. Final verification
+- An overview of the transaction data
+- Outstanding invoice amounts
+- Payment reconciliation details
+- Detected anomalies
+- Dispute information
+- Transaction records
+- Filters and CSV downloads
 
-"How can I check whether the database, anomaly detection program and dashboard are working correctly together?"
+The dashboard can display information from the clean database and the database containing the test anomalies.
 
-This helped with reviewing the completed implementation.
+## Prompt History
 
-How I Used ChatGPT:
+During development, I used AI assistance to understand database relationships, generate Python and SQL code, resolve errors and review the results.
 
-ChatGPT helped me understand technical concepts, plan the project structure, generate Python and SQL code, troubleshoot issues and interpret the results.
+Some of the main questions I worked through were:
 
-I used the suggested code in my local project, ran the scripts in VS Code and checked the outputs as I progressed.
+1. How should orders, deliveries, invoices and payments be connected?
+2. How can I generate sample transaction data with consistent relationships?
+3. What checks are needed to validate the generated data?
+4. How can I identify duplicate payments and invoice mismatches?
+5. How can I test the detection rules using known errors?
+6. How can I compare two generated datasets?
 
-Testing and Results:
+This is a short summary of the main topics discussed during development.
 
-After setting up the database and detection rules, I tested the system using five deliberately introduced anomalies.
+## What I Learned
 
-The system identified all five errors without reporting additional cases in that controlled test.
+While working on this project, I learned how to connect different transaction records in a database and compare them using Python and SQL.
 
-The results were:
+I also gained experience in generating sample data, checking its consistency and testing detection rules using known errors.
 
-- Precision: 100%
-- Recall: 100%
-- F1-score: 100%
+The reproducibility test helped me understand why using the same configuration and random seed is important when generating datasets.
 
-These results are based only on the five synthetic test cases. More testing would be required to evaluate how well the system performs on real company data.
+## Future Improvements
 
-What I Learned:
+The current system uses predefined rules to detect transaction inconsistencies.
 
-While working on this project, I gained practical experience in:
+In the future, I would like to add more detailed time-based delay detection, test the system with more varied anomalies and explore machine learning methods.
 
-- Working with relational databases
-- Generating and validating datasets
-- Writing SQL queries
-- Using Python for data analysis
-- Building rule-based anomaly detection
-- Evaluating detection results
-- Creating interactive dashboards with Streamlit
+## Conclusion
 
-I also learned why it is important to validate data before performing analysis, since incorrect records can lead to misleading results.
+I was able to generate a large synthetic dataset, store it in SQLite, validate the records and test the anomaly detection rules.
 
-Future Improvements:
+The dataset passed the validation and reproducibility checks. All 16 CSV files matched when the data was regenerated, and the system detected all five introduced anomalies.
 
-There are a few features that could be added later, such as machine learning-based anomaly detection, more detailed process delay tracking and financial risk scoring.
+The dashboard makes it easier to review transaction information and detection results without checking each database record manually.
 
-These would help extend the system beyond its current rule-based approach.
-
-Conclusion:
-
-This project helped me understand how different parts of a company's sales process are connected and how small mistakes in transaction records can affect financial reporting.
-
-The system is able to compare related records, identify certain inconsistencies and display the findings in a dashboard.
-
-Although it currently uses synthetic data, the project provides a foundation for building a more advanced transaction monitoring system in the future.
+The project currently focuses on financial discrepancies and process-control errors. Detailed time-based delay detection remains an area for further development.
